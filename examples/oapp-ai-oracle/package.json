@@ -1,0 +1,37 @@
+{
+  "name": "@neo-oracle/evidence-oapp",
+  "version": "0.1.0",
+  "description": "Procedural Proof — AI Oracle as epistemic governance infrastructure on LayerZero V2",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fmdd123123-create/neo-oracle.git"
+  },
+  "scripts": {
+    "compile": "pnpm compile:hardhat",
+    "compile:hardhat": "hardhat compile",
+    "clean": "rm -rf artifacts cache",
+    "test": "hardhat test",
+    "deploy": "hardhat lz:deploy --tags EvidenceOracle",
+    "wire": "hardhat lz:oapp:wire --oapp-config layerzero.config.ts",
+    "lint": "solhint 'contracts/**/*.sol'"
+  },
+  "devDependencies": {
+    "@layerzerolabs/lz-definitions": "^3.0.0",
+    "@layerzerolabs/lz-v2-utilities": "^3.0.0",
+    "@layerzerolabs/oapp-evm": "^0.1.0",
+    "@layerzerolabs/toolbox-hardhat": "^0.4.0",
+    "@nomicfoundation/hardhat-ethers": "^3.0.0",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^5.0.0",
+    "dotenv": "^16.3.1",
+    "ethers": "^6.13.0",
+    "hardhat": "^2.22.0",
+    "hardhat-deploy": "^0.14.0",
+    "solhint": "^5.0.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=18.16.0"
+  }
+}
