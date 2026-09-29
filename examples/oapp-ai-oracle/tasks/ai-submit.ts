@@ -1,5 +1,5 @@
 import { task } from 'hardhat/config'
-import { ethers } from 'ethers'
+import { utils as ethersUtils } from 'ethers'
 
 /**
  * AI Agent Task — Execute SOP and submit evidence to EvidenceOracle
@@ -53,9 +53,9 @@ task('ai:submit', 'AI agent executes SOP and submits evidence on-chain')
 
         // In production: pin to IPFS. Here we use deterministic hash.
         const evidenceJson = JSON.stringify(evidencePackage)
-        const evidenceCid = ethers.keccak256(ethers.toUtf8Bytes(evidenceJson))
-        const sopHash = ethers.keccak256(ethers.toUtf8Bytes(JSON.stringify(sopDoc)))
-        const conclusionHash = ethers.keccak256(ethers.toUtf8Bytes(evidencePackage.conclusion))
+        const evidenceCid = ethersUtils.keccak256(ethersUtils.toUtf8Bytes(evidenceJson))
+        const sopHash = ethersUtils.keccak256(ethersUtils.toUtf8Bytes(JSON.stringify(sopDoc)))
+        const conclusionHash = ethersUtils.keccak256(ethersUtils.toUtf8Bytes(evidencePackage.conclusion))
 
         console.log(`   🔒 Evidence CID: ${evidenceCid.slice(0, 18)}...`)
         console.log(`   🔒 SOP Hash: ${sopHash.slice(0, 18)}...`)
@@ -77,6 +77,6 @@ task('ai:submit', 'AI agent executes SOP and submits evidence on-chain')
         console.log(`   📤 Submitting decision...`)
         const tx = await oracle.submitDecision(evidenceCid, sopHash, conclusionHash, conclusion)
         const receipt = await tx.wait()
-        console.log(`   ✅ Decision submitted. Tx: ${receipt.hash}`)
+        console.log(`   ✅ Decision submitted. Tx: ${receipt.transactionHash}`)
         console.log(`\n   Waiting for verifier approval...`)
     })

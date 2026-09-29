@@ -33,6 +33,6 @@ task('challenge:decision', 'Challenge a decision with fraud proof')
 
         const tx = await oracle.connect(challenger).challenge(decisionId, reason)
         const receipt = await tx.wait()
-        console.log(`\n   🚨 Challenge submitted. Tx: ${receipt.hash}`)
+        console.log(`\n   🚨 Challenge submitted. Tx: ${receipt.transactionHash}`)
         console.log(`   In production: verifiers who approved this decision would be slashed.`)
     })

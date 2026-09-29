@@ -37,12 +37,12 @@ task('dispatch:decision', 'Dispatch verified decision to target chain')
 
         // Quote fee
         const fee = await oracle.quoteDispatch(decisionId, dstEid, options)
-        console.log(`   💰 Fee: ${hre.ethers.formatEther(fee.nativeFee)} ETH`)
+        console.log(`   💰 Fee: ${hre.ethers.utils.formatEther(fee.nativeFee)} ETH`)
 
         // Dispatch
         console.log(`   📡 Sending via LayerZero...`)
         const tx = await oracle.dispatch(decisionId, dstEid, options, { value: fee.nativeFee })
         const receipt = await tx.wait()
-        console.log(`   ✅ Dispatched! Tx: ${receipt.hash}`)
-        console.log(`\n   Track on LayerZeroScan: https://testnet.layerzeroscan.com/tx/${receipt.hash}`)
+        console.log(`   ✅ Dispatched! Tx: ${receipt.transactionHash}`)
+        console.log(`\n   Track on LayerZeroScan: https://testnet.layerzeroscan.com/tx/${receipt.transactionHash}`)
     })

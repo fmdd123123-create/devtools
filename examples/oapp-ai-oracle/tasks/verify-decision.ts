@@ -37,7 +37,7 @@ task('verify:decision', 'Verifier audits a decision against SOP')
         console.log(`\n   ✅ All checks passed. Approving...`)
         const tx = await oracle.connect(verifier).verify(decisionId, true)
         const receipt = await tx.wait()
-        console.log(`   ✅ Approved. Tx: ${receipt.hash}`)
+        console.log(`   ✅ Approved. Tx: ${receipt.transactionHash}`)
 
         const updated = await oracle.decisions(decisionId)
         console.log(`   Approvals: ${updated.approvals}/${await oracle.threshold()}`)
